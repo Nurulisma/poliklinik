@@ -11,7 +11,7 @@
             $_SESSION['username'] = $username;
             $_SESSION['password'] = $password;
 
-            header("location:../../dokter.php");
+            header("location:../../index.php");
         }
         else{
             $query = "SELECT * FROM dokter WHERE nama = '$username' && password = '$password'";
@@ -22,7 +22,7 @@
                 $_SESSION['username'] = $data['nama'];
                 $_SESSION['password'] = $data['password'];
 
-                header("location:../../dokter.php");
+                header("location:../../index.php");
             }
             else{
                 $queryPasien = "SELECT * FROM pasien WHERE nama = '$username' && password = '$password'";
@@ -31,7 +31,7 @@
                     $_SESSION['username'] = $data['nama'];
                     $_SESSION['password'] = $data['password'];
 
-                    header("location:../../obat.php");
+                    header("location:../../index.php");
                 }
                 else{
                     echo '<script>alert("Email atau password salah");location.href="../../login.php";</script>';

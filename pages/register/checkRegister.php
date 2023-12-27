@@ -41,14 +41,14 @@
                 $urutanTerakhir = (int) $substring;
                 $urutanTerakhir += 1;
 
-                if ($urutanTerakhir > 0) {
+                if($urutanTerakhir > 99){
+                    $no_rm_baru = $tahun.$bulan.'-'.$urutanTerakhir;
+                }
+                else if ($urutanTerakhir > 9 && $urutanTerakhir < 100) {
+                    $no_rm_baru = $tahun.$bulan.'-'.'0'.$urutanTerakhir;
+                }
+                else if($urutanTerakhir <= 9){
                     $no_rm_baru = $tahun.$bulan.'-'.'00'.$urutanTerakhir;
-                }
-                else if($urutanTerakhir > 9){
-                    $no_rm_baru = $tahun.$bulan.'-'.'0'.$urutanTerakhir;
-                }
-                elseif ($urutanTerakhir > 99) {
-                    $no_rm_baru = $tahun.$bulan.'-'.'0'.$urutanTerakhir;
                 }
                 $insertDataBaru = "INSERT INTO pasien (nama, password, alamat, no_ktp, no_hp, no_rm) VALUES ('$nama', '$password', '$alamat', '$no_ktp', '$no_hp', '$no_rm_baru')";
                 $queryInsertBaru = mysqli_query($mysqli,$insertDataBaru);
