@@ -1,21 +1,17 @@
 <!DOCTYPE html>
+<?php
+    session_start();
+    $username = $_SESSION['username'];
+    $idPasien = $_SESSION['id'];
+
+    if ($username == "") {
+        header("location:loginUser.php");
+    }
+?>
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
 -->
-
-<?php
-    session_start();
-    $username = $_SESSION['username'];
-
-    if ($username == "") {
-        header("location:login.php");
-    }
-    // else if ($username != "Admin") {
-    //     echo '<script>alert("Anda tidak memiliki akses");window.location.href="login.php";</script>';
-    // }
-?>
-
 <html lang="en">
 
 <head>
@@ -30,6 +26,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -44,31 +41,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            
+            <?php include ('pages/detailDaftarPoli/index.php') ?>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-            <div class="p-3">
-                <h5>Title</h5>
-                <p>Sidebar content</p>
-            </div>
-        </aside>
-        <!-- /.control-sidebar -->
-
         <!-- Main Footer -->
-        <footer class="main-footer">
-            <!-- To the right -->
-            <div class="float-right d-none d-sm-inline">
-                Anything you want
-            </div>
-            <!-- Default to the left -->
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
-            reserved.
-        </footer>
     </div>
     <!-- ./wrapper -->
 
@@ -80,6 +58,25 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- AdminLTE App -->
     <script src="assets/dist/js/adminlte.min.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('#poli').on('change', function() {
+            var poliId = $(this).val();
+
+            // Mengambil data jadwal berdasarkan poli yang dipilih
+            $.ajax({
+                type: 'POST',
+                url: 'getJadwal.php', // Ganti dengan path file get_jadwal.php sesuai dengan struktur proyek Anda
+                data: {
+                    poliId: poliId
+                },
+                success: function(data) {
+                    $('#jadwal').html(data);
+                }
+            });
+        });
+    });
+    </script>
 </body>
 
 </html>

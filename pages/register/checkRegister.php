@@ -27,7 +27,7 @@
                 $insertData = "INSERT INTO pasien (nama, password, alamat, no_ktp, no_hp, no_rm) VALUES ('$nama', '$password', '$alamat', '$no_ktp', '$no_hp', '$no_rm')";
                 $queryInsert = mysqli_query($mysqli,$insertData);
                 if ($queryInsert) {
-                    echo '<script>alert("Pendaftaran akun berhasil");window.location.href="../../login.php";</script>';
+                    echo '<script>alert("Pendaftaran akun berhasil");window.location.href="../../loginUser.php";</script>';
                 }
                 else {
                     echo '<script>alert("Pendaftaran akun gagal");window.location.href="../../register.php";</script>';
@@ -54,10 +54,10 @@
                 $queryInsertBaru = mysqli_query($mysqli,$insertDataBaru);
     
                 if ($queryInsertBaru) {
-                    echo '<script>alert("Pendaftaran akun berhasil");window.location.href="../../login.php";</script>';
+                    echo '<script>alert("Pendaftaran akun berhasil");window.location.href="../../loginUser.php";</script>';
                 }
                 else{
-                    echo '<script>alert("Pendaftaran akun gagal");window.location.href="../../register.php";</script>';
+                    echo '<script>alert("Pendaftaran akun gagal");window.location.href="../../loginUser.php";</script>';
                 }
             }
         }

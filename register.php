@@ -20,12 +20,12 @@
 <body class="hold-transition register-page">
     <div class="register-box">
         <div class="register-logo">
-            <h1><b>Poliklinik</b></h1>
+            <h2>Poliklinik</h2>
         </div>
 
         <div class="card">
             <div class="card-body register-card-body">
-                <h5 class="login-box-msg">Register dulu yaw kidz</h5>
+                <p class="login-box-msg">Silahkan melakukan pendaftaran <span class="text-primary">pasien</span> </p>
 
                 <form action="pages/register/checkRegister.php" method="post">
                     <div class="input-group mb-3">
@@ -71,7 +71,7 @@
 
                 <div class="social-auth-links text-center">
                     <p>- Sudah punya akun? -</p>
-                    <a href="login.php" class="btn btn-block btn-success">
+                    <a href="loginUser.php" class="btn btn-block btn-success">
                         Login
                     </a>
                 </div>

@@ -37,7 +37,7 @@
                with font-awesome or any other icon font library -->
                 
                     <?php
-                        if($username == "admin"){
+                        if($_SESSION['akses'] == "admin"){
                             echo '<li class="nav-item menu-open">
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-th "></i>
@@ -97,7 +97,7 @@
                                 </p>
                             </a>
                         </li>';
-                        } else {
+                        } else if($_SESSION['akses'] == "dokter") {
                             echo '<li class="nav-item menu-open">
                             <a href="#" class="nav-link active">
                                 <i class="nav-icon fas fa-th "></i>
@@ -157,6 +157,39 @@
                                 </p>
                             </a>
                         </li>';
+                        } else if($_SESSION['akses'] == "pasien") {
+                            echo '<li class="nav-item menu-open">
+                            <a href="#" class="nav-link active">
+                                <i class="nav-icon fas fa-th "></i>
+                                <p>
+                                    Dashboard
+                                    <!-- <i class="right fas fa-angle-left fa-solid"></i> -->
+                                    <span class="right badge badge-info">Pasien</span>
+                                </p>
+                            </a> 
+                            <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="pendaftaranPoli.php" class="nav-link">
+                                    <i class="fas fa-solid fa-stethoscope nav-icon"></i>
+                                    <p>
+                                        Daftar Poli
+                                        <span class="right badge badge-info">Pasien</span>
+                                    </p>
+                                </a>
+                            </li>
+                            </ul> 
+                            </li>
+                            <li class="nav-item">
+                                <a href="pages/logout/logout.php" class="nav-link">
+                                    <i class="nav-icon fas fa-circle"></i>
+                                    <p>
+                                        Logout
+                                        <span class="right badge badge-info">
+                                            Pasien
+                                        </span>
+                                    </p>
+                                </a>
+                            </li>';
                         }
                     ?>
                     <!-- <ul class="nav nav-treeview">

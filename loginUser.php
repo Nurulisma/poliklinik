@@ -25,9 +25,9 @@
         <!-- /.login-logo -->
         <div class="card">
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Silahkan login sebagai <b class="text-success">Dokter</b> untuk masuk ke dashboard dokter</p>
+                <p class="login-box-msg">Silahkan login sebagai <span class="text-primary">Pasien</span> untuk melakukan pendaftaran poli</p>
 
-                <form action="pages/login/checkLogin.php" method="post">
+                <form action="pages/loginUser/checkLoginUser.php" method="post">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Username | Case Sensitive" name="username">
                         <div class="input-group-append">
@@ -44,15 +44,22 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-block btn-success">
+                    <button type="submit" class="btn btn-block btn-primary">
                         Login
                     </button>
                 </form>
 
+                <div class="social-auth-links text-center mb-3">
+                    <p>- Belum punya akun? -</p>
+                    <a href="register.php" class="btn btn-block btn-secondary">
+                        Register
+                    </a>
+                </div>
+
                 <!-- /.social-auth-links -->
             </div>
             </div>
-            <div class="text-center mt-3">Kamu pasien? <a href="loginUser.php"><span class="text-primary">Login Disini</span></a>
+            <div class="text-center mt-3">Kamu dokter? <a href="login.php"><span class="text-success">Login Disini</span></a>
         </div>
     </div>
     <!-- /.login-box -->

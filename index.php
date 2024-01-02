@@ -1,21 +1,4 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-
-<?php
-    session_start();
-    $username = $_SESSION['username'];
-
-    if ($username == "") {
-        header("location:login.php");
-    }
-    // else if ($username != "Admin") {
-    //     echo '<script>alert("Anda tidak memiliki akses");window.location.href="login.php";</script>';
-    // }
-?>
-
 <html lang="en">
 
 <head>
@@ -26,60 +9,56 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome Icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="assets/plugins/fontawesome-free/css/all.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="assets/dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="hold-transition sidebar-mini">
-    <div class="wrapper">
-
-        <!-- Navbar -->
-        <?php include ('components/navbar.php') ?>
-        <!-- /.navbar -->
-
-        <!-- Main Sidebar Container -->
-        <?php include ('components/sidebar.php') ?>
-        <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            
-            <!-- /.content -->
-        </div>
-        <!-- /.content-wrapper -->
-
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-            <div class="p-3">
-                <h5>Title</h5>
-                <p>Sidebar content</p>
-            </div>
-        </aside>
-        <!-- /.control-sidebar -->
-
-        <!-- Main Footer -->
-        <footer class="main-footer">
-            <!-- To the right -->
-            <div class="float-right d-none d-sm-inline">
-                Anything you want
-            </div>
-            <!-- Default to the left -->
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights
-            reserved.
-        </footer>
+<body class="hold-transition login-page">
+    <div class="container-fluid bg-sky-600 flex flex-col justify-center items-center text-white p-5"
+        style="height: 400px;">
+        <h1 class="font-weight-bold mb-3">Sistem Janji Temu Pasien & Dokter</h1>
+        <h5>Bimbingan Karir 2023 Bidang Web</h5>
     </div>
-    <!-- ./wrapper -->
+    <div class="container mt-5">
+        <div class="row justify-content-lg-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="fas fa-user fa-fw mb-3 text-primary" style="font-size: 34px;"></i>
+                        <h3 class="">Pasien</h3>
+                        <p class="card-text">Apabila anda adalah seorang Pasien, Silahkan Login terlebih dahulu untuk
+                            melakukan pendaftaran sebagai pasien</p>
+                        <a href="loginUser.php" class="btn btn-primary btn-block">Login Sebagai Pasien</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <i class="fas fa-user-nurse fa-fw mb-3 text-success" style="font-size: 34px;"></i>
+                        <h3 class="">Dokter</h3>
+                        <p class="card-text">Apabila anda adalah seorang Dokter, silahkan Login terlebih dahulu untuk
+                            memulai melayani pasien</p>
+                        <div class="d-grid">
+                            <a href="login.php" class="btn btn-success btn-block">Login Sebagai Dokter</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.login-box -->
 
-    <!-- REQUIRED SCRIPTS -->
-
-    <!-- jQuery -->
-    <script src="assets/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap 4 -->
-    <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE App -->
-    <script src="assets/dist/js/adminlte.min.js"></script>
+        <!-- jQuery -->
+        <script src="assets/plugins/jquery/jquery.min.js"></script>
+        <!-- Bootstrap 4 -->
+        <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- AdminLTE App -->
+        <script src="assets/dist/js/adminlte.min.js"></script>
 </body>
 
 </html>
