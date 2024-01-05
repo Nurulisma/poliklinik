@@ -1,19 +1,13 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-
 <?php
     session_start();
+    $id_dokter = $_SESSION['id'];
     $username = $_SESSION['username'];
+    $id_poli = $_SESSION['id_poli'];
 
     if ($username == "") {
         header("location:login.php");
     }
-    // else if ($username != "Admin") {
-    //     echo '<script>alert("Anda tidak memiliki akses");window.location.href="login.php";</script>';
-    // }
 ?>
 
 <html lang="en">
