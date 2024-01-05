@@ -1,5 +1,4 @@
 <?php
-
     require '../../config/koneksi.php';
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tahun = date('Y');
@@ -11,16 +10,16 @@
         $password = $_POST['password'];
         $no_hp = $_POST['no_hp'];
 
-        // mendapatkan data tahun dan bulan saat ini
-        $searchData = "SELECT * FROM pasien";
-        $query = mysqli_query($mysqli,$searchData);
+        $cariData = "SELECT * FROM pasien";
+        $query = mysqli_query($mysqli,$cariData);
         $no_rm = $tahun.$bulan.'-'.'001';
 
-        // cek ktp tersedia ? atau tidak
+        // mengecek apakah ktp tersedia apa engga
         $cekNoKTP = "SELECT * FROM pasien WHERE no_ktp = '$no_ktp'";
-        $queryCekKTP = mysqli_query($mysqli,$cekNoKTP);
-        if (mysqli_num_rows($queryCekKTP)>0) {
-            echo '<script>alert("No KTP telah terdaftar sebelumnya");window.location.href="../../register.php";</script>';
+        $cekDataKTP = mysqli_query($mysqli,$cekNoKTP);
+        if (mysqli_num_rows($cekDataKTP)>0) {
+            echo '<script>alert("No KTP telah terdaftar sebelumnya");
+            window.location.href="../../register.php";</script>';
         }
         else{
             if (mysqli_num_rows($query) < 1) {
@@ -34,21 +33,21 @@
                 }
             }
             else {
-                $getLastData = 'SELECT * FROM pasien ORDER BY no_rm DESC limit 1';
-                $querygetData = mysqli_query($mysqli, $getLastData);
-                $lastData = mysqli_fetch_assoc($querygetData);
-                $substring = substr($lastData['no_rm'], 7);
-                $urutanTerakhir = (int) $substring;
-                $urutanTerakhir += 1;
+                $getDataTerakhir = 'SELECT * FROM pasien ORDER BY no_rm DESC limit 1';
+                $querygetData = mysqli_query($mysqli, $getDataTerakhir);
+                $dataTerakhir = mysqli_fetch_assoc($querygetData);
+                $substring = substr($dataTerakhir['no_rm'], 7);
+                $listTerakhir = (int) $substring;
+                $listTerakhir += 1;
 
-                if($urutanTerakhir > 99){
-                    $no_rm_baru = $tahun.$bulan.'-'.$urutanTerakhir;
+                if($listTerakhir > 99){
+                    $no_rm_baru = $tahun.$bulan.'-'.$listTerakhir;
                 }
-                else if ($urutanTerakhir > 9 && $urutanTerakhir < 100) {
-                    $no_rm_baru = $tahun.$bulan.'-'.'0'.$urutanTerakhir;
+                else if ($listTerakhir > 9 && $listTerakhir < 100) {
+                    $no_rm_baru = $tahun.$bulan.'-'.'0'.$listTerakhir;
                 }
-                else if($urutanTerakhir <= 9){
-                    $no_rm_baru = $tahun.$bulan.'-'.'00'.$urutanTerakhir;
+                else if($listTerakhir <= 9){
+                    $no_rm_baru = $tahun.$bulan.'-'.'00'.$listTerakhir;
                 }
                 $insertDataBaru = "INSERT INTO pasien (nama, password, alamat, no_ktp, no_hp, no_rm) VALUES ('$nama', '$password', '$alamat', '$no_ktp', '$no_hp', '$no_rm_baru')";
                 $queryInsertBaru = mysqli_query($mysqli,$insertDataBaru);

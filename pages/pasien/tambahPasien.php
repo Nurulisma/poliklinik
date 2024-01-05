@@ -1,5 +1,4 @@
 <?php
-
     require '../../config/koneksi.php';
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $tahun = date('Y');
@@ -16,14 +15,12 @@
         $query = mysqli_query($mysqli,$searchData);
         $no_rm = $tahun.$bulan.'-'.'001';
 
-        // cek ktp tersedia ? atau tidak
+        // cek ktp apakah tersedia atau tidak
         $cekNoKTP = "SELECT * FROM pasien WHERE no_ktp = '$no_ktp'";
         $queryCekKTP = mysqli_query($mysqli,$cekNoKTP);
-        // jika tersedia
         if (mysqli_num_rows($queryCekKTP)>0) {
             echo '<script>alert("No KTP telah terdaftar sebelumnya");window.location.href="../../pasien.php";</script>';
         }
-        // jika tidak tambahkan data baru
         else{
             // jika data masih kosong maka no urut rekam medis otomatis 001
             if (mysqli_num_rows($query) < 1) {

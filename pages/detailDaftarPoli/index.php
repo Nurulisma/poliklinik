@@ -1,8 +1,13 @@
 <?php
     require 'config/koneksi.php';
     $id = $_GET['id'];
-    $ambilDetail = mysqli_query($mysqli, "SELECT daftar_poli.id as idDaftarPoli, poli.nama_poli, dokter.nama, jadwal_periksa.hari, DATE_FORMAT(jadwal_periksa.jam_mulai, '%H:%i') as jamMulai, DATE_FORMAT(jadwal_periksa.jam_selesai, '%H:%i') as jamSelesai, daftar_poli.no_antrian FROM daftar_poli INNER JOIN jadwal_periksa ON daftar_poli.id_jadwal = jadwal_periksa.id INNER JOIN dokter ON jadwal_periksa.id_dokter = dokter.id INNER JOIN poli ON dokter.id_poli = poli.id WHERE daftar_poli.id = '$id'");
-    $data = mysqli_fetch_assoc($ambilDetail);
+    $getDetail = mysqli_query($mysqli, "SELECT daftar_poli.id as idDaftarPoli, 
+    poli.nama_poli, dokter.nama, jadwal_periksa.hari, DATE_FORMAT(jadwal_periksa.jam_mulai, 
+    '%H:%i') as jamMulai, DATE_FORMAT(jadwal_periksa.jam_selesai, '%H:%i') as jamSelesai, 
+    daftar_poli.no_antrian FROM daftar_poli INNER JOIN jadwal_periksa ON daftar_poli.id_jadwal 
+    = jadwal_periksa.id INNER JOIN dokter ON jadwal_periksa.id_dokter = dokter.id 
+    INNER JOIN poli ON dokter.id_poli = poli.id WHERE daftar_poli.id = '$id'");
+    $data = mysqli_fetch_assoc($getDetail);
 ?>
 
 <div class="card card-solid">
@@ -44,6 +49,4 @@
             </div>
         </div>
     </div>
-    <!-- /.card-body -->
-    <!-- /.card-footer -->
 </div>

@@ -18,34 +18,37 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body class="hold-transition login-page">
-    <div class="container-fluid bg-sky-600 flex flex-col justify-center items-center text-white p-5"
-        style="height: 400px;">
+<body class="hold-transition login-page"
+style="background-color: #ffffff;">
+    <div class="container-fluid flex flex-col justify-center items-center text-white p-5"
+        style="height: 400px; background-color: #244579">
         <h1 class="font-weight-bold mb-3">Sistem Janji Temu Pasien & Dokter</h1>
-        <h5>Bimbingan Karir 2023 Bidang Web</h5>
+        <h5>Bimbingan Karir 2023 Bidang Web Developer</h5>
+        <!-- <br>
+        <h6>By : Nurul Ismawati</h6> -->
     </div>
-    <div class="container mt-5">
+    <div class="container mt-4">
         <div class="row justify-content-lg-center">
             <div class="col-md-6">
-                <div class="card">
+                <div>
                     <div class="card-body">
-                        <i class="fas fa-user fa-fw mb-3 text-primary" style="font-size: 34px;"></i>
-                        <h3 class="">Pasien</h3>
+                        <i class="fas fa-user fa-fw mb-3 text-primary text-primary" style="font-size: 34px;"></i>
+                        <h4><b>Login Sebagai Pasien</b></h4>
                         <p class="card-text">Apabila anda adalah seorang Pasien, Silahkan Login terlebih dahulu untuk
                             melakukan pendaftaran sebagai pasien</p>
-                        <a href="loginUser.php" class="btn btn-primary btn-block">Login Sebagai Pasien</a>
+                        <a href="loginUser.php" class="text-primary"><b>Klik Link Berikut</b></a>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="card">
+                <div>
                     <div class="card-body">
                         <i class="fas fa-user-nurse fa-fw mb-3 text-success" style="font-size: 34px;"></i>
-                        <h3 class="">Dokter</h3>
+                        <h4><b>Login Sebagai Dokter</b></h4>
                         <p class="card-text">Apabila anda adalah seorang Dokter, silahkan Login terlebih dahulu untuk
                             memulai melayani pasien</p>
                         <div class="d-grid">
-                            <a href="login.php" class="btn btn-success btn-block">Login Sebagai Dokter</a>
+                            <a href="login.php" class="text-success"><b>Klik Link Berikut</b></a>
                         </div>
                     </div>
                 </div>

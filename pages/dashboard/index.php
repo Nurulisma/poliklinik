@@ -1,4 +1,5 @@
 <!-- Content Header (Page header) -->
+<body>
 <div class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -15,25 +16,18 @@
     </div><!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
+
 <!-- Main content -->
 <div class="content">
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <!-- /.card-header -->
-
-
-                    <div class="card-body"
-                        style="min-height: 400px; display: flex; justify-content: center; align-items: center;">
-                        <h1>Halaman Dashboard</h1>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <!-- /.card -->
+        <div class="text-white">
+            <div class="card card-body"
+            style="height: 550px; background-color: #244579; justify-content: center; align-items: center;">
+                <h1 class="font-weight-bold mb-3">Selamat Datang di Halaman Dashboard</h1>
+                <h5>Silahkan pilih menu yang sesuai dengan kebutuhan Anda</h5>
             </div>
         </div>
-        <!-- /.row -->
-    </div><!-- /.container-fluid -->
-</div>
+    </div>
+</div> 
+</body>
 <!-- /.content -->

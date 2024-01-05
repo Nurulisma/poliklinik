@@ -18,18 +18,18 @@
 </head>
 
 <body class="hold-transition login-page">
-    <div class="login-box">
-        <div class="login-logo">
-            <h2>Poliklinik</h2>
-        </div>
-        <!-- /.login-logo -->
-        <div class="card">
-            <div class="card-body login-card-body">
-                <p class="login-box-msg">Silahkan login sebagai <b class="text-success">Dokter</b> untuk masuk ke dashboard dokter</p>
+<div class="login-box">
+  <!-- /.login-logo -->
+  <div class="card card-outline card-success">
+    <div class="card-header text-center">
+      <a href="#" class="h1"><b>Poli</b>klinik</a>
+    </div>
+    <div class="card-body">
+        <p class="login-box-msg">Start your session as a <b class="text-success">Doctor</b></p>
 
-                <form action="pages/login/checkLogin.php" method="post">
+        <form action="pages/login/checkLogin.php" method="post">
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Username | Case Sensitive" name="username">
+                        <input type="text" class="form-control" placeholder="Username | Case Sensitive" name="username" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-user"></span>
@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="input-group mb-3">
-                        <input type="password" class="form-control" placeholder="Password | Case Sensitive" name="password">
+                        <input type="password" class="form-control" placeholder="Password | Case Sensitive" name="password" required>
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -49,12 +49,15 @@
                     </button>
                 </form>
 
-                <!-- /.social-auth-links -->
-            </div>
-            </div>
-            <div class="text-center mt-3">Kamu pasien? <a href="loginUser.php"><span class="text-primary">Login Disini</span></a>
-        </div>
     </div>
+    </div>
+        <div class="text-center mt-3">Are you a Patient? <a href="loginUser.php"><span class="text-primary"><b>Login Here</b></span></a>
+    </div>
+    <!-- /.card-body -->
+  </div>
+    
+  <!-- /.card -->
+</div>
     <!-- /.login-box -->
 
     <!-- jQuery -->
