@@ -14,7 +14,22 @@
                 <img src="assets/dist/img/avatar4.png" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block"><b><?php echo $username ?></b></a>
+                <?php 
+                    require 'config/koneksi.php';
+                    if($_SESSION['akses']=='admin'){
+                        $resultData = array(
+                            'nama'=>'Admin'
+                        );
+                    }else if($_SESSION['akses']=='dokter'){
+                        $getData = mysqli_query($mysqli,"SELECT * FROM dokter WHERE id = '$id_dokter'");
+                        $resultData = mysqli_fetch_assoc($getData);
+                    }else if($_SESSION['akses']=='pasien'){
+                        $getData = mysqli_query($mysqli,"SELECT * FROM pasien WHERE id = '$idPasien'");
+                        $resultData = mysqli_fetch_assoc($getData);
+                    }
+                ?>
+                
+                <a href="#" class="d-block"><b><?php echo $resultData['nama'] ?></b></a>
             </div>
         </div>
 

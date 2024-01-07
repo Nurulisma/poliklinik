@@ -1,19 +1,16 @@
 <!DOCTYPE html>
-<!--
-This is a starter template page. Use this page to start your new project from
-scratch. This page gets rid of all links and provides the needed markup only.
--->
-
 <?php
     session_start();
     $username = $_SESSION['username'];
+    $id_dokter = $_SESSION['id'];
 
     if ($username == "") {
         header("location:login.php");
     }
-    // else if ($username != "Admin") {
-    //     echo '<script>alert("Anda tidak memiliki akses");window.location.href="login.php";</script>';
-    // }
+    else if($_SESSION['akses'] != "dokter"){
+        echo '<script>alert("Anda tidak memiliki akses");window.location.href="logout.php";</script>';
+    }
+
 ?>
 
 <html lang="en">
@@ -44,7 +41,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
-            
+            <?php include ('pages/profile/index.php') ?>
             <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->

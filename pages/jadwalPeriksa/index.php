@@ -30,10 +30,6 @@
                                 data-target="#addModal">
                                 Tambah Jadwal
                             </button>
-                            <button type="button" class="btn btn-sm btn-secondary float-right mx-2"
-                                data-toggle="modal" data-target="#cekJadwal">
-                                Lihat Jadwal
-                            </button>
                             <!-- Modal Tambah Data Jadwal Periksa -->
                             <div class="modal fade" id="addModal" tabindex="-1" role="dialog"
                                 aria-labelledby="addModalLabel" aria-hidden="true">
@@ -76,67 +72,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Modal lihat Data jadwal -->
-                            <div class="modal fade" id="cekJadwal" tabindex="-1" role="dialog"
-                                aria-labelledby="addModalLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-xl" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <?php
-                                                require 'config/koneksi.php';
-                                                $cekJadwalPasien = mysqli_query($mysqli,"SELECT * FROM dokter INNER JOIN poli ON 
-                                                dokter.id_poli = poli.id WHERE poli.id = '$id_poli'");
-                                                $getDataPasien = mysqli_fetch_assoc($cekJadwalPasien);
-                                            ?>
-                                            <h5 class="modal-title" id="addModalLabel">Jadwal Poli
-                                                <?php echo $getDataPasien['nama_poli'] ?></h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <!-- Form tambah data jadwal disini -->
-                                            <div class="card-body table-responsive p-0">
-                                                <table class="table table-hover text-nowrap">
-                                                    <thead>
-                                                        <tr>
-                                                            <td>No</td>
-                                                            <td>Nama Dokter</td>
-                                                            <td>Hari</td>
-                                                            <td>Jam Mulai</td>
-                                                            <td>Jam Selesai</td>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <?php
-                                                            $nomor = 1;
-                                                            require 'config/koneksi.php';
-                                                            $ambilDataJadwal = "SELECT jadwal_periksa.id, jadwal_periksa.id_dokter, 
-                                                            jadwal_periksa.hari, jadwal_periksa.jam_mulai, jadwal_periksa.jam_selesai, 
-                                                            dokter.id AS idDokter, dokter.nama, dokter.alamat, dokter.no_hp, dokter.id_poli, 
-                                                            poli.id AS idPoli, poli.nama_poli, poli.keterangan FROM jadwal_periksa INNER JOIN 
-                                                            dokter ON jadwal_periksa.id_dokter = dokter.id INNER JOIN poli ON dokter.id_poli 
-                                                            = poli.id WHERE id_poli = '$id_poli'";
-
-                                                            $resultss = mysqli_query($mysqli, $ambilDataJadwal);
-                                                            while ($a = mysqli_fetch_assoc($resultss)) {
-                                                                # code...
-                                                            ?>
-                                                        <tr>
-                                                            <td><?php echo $nomor++; ?></td>
-                                                            <td><?php echo $a['nama'] ?></td>
-                                                            <td><?php echo $a['hari'] ?></td>
-                                                            <td><?php echo $a['jam_mulai'] ?></td>
-                                                            <td><?php echo $a['jam_selesai'] ?></td>
-                                                        </tr>
-                                                        <?php } ?>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <!-- /.card-header -->
@@ -151,6 +86,7 @@
                                     <th>Hari</th>
                                     <th>Jam Mulai</th>
                                     <th>Jam Selesai</th>
+                                    <th>Status</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -161,7 +97,7 @@
                                 $no = 1;
                                 require 'config/koneksi.php';
                                 $query = "SELECT jadwal_periksa.id, jadwal_periksa.id_dokter, jadwal_periksa.hari, 
-                                jadwal_periksa.jam_mulai, jadwal_periksa.jam_selesai, dokter.id AS idDokter, dokter.nama, 
+                                jadwal_periksa.jam_mulai, jadwal_periksa.jam_selesai, jadwal_periksa.status, dokter.id AS idDokter, dokter.nama, 
                                 dokter.alamat, dokter.no_hp, dokter.id_poli, poli.id AS idPoli, poli.nama_poli, poli.keterangan 
                                 FROM jadwal_periksa INNER JOIN dokter ON jadwal_periksa.id_dokter = dokter.id INNER JOIN poli ON 
                                 dokter.id_poli = poli.id WHERE id_poli = '$id_poli' AND dokter.id = '$id_dokter'";
@@ -178,26 +114,20 @@
                                         <td><?php echo $data['jam_selesai'] ?></td>
                                         <td>
                                             <?php
-                                                require 'config/koneksi.php';
-                                                $cekJadwalPeriksa = "SELECT * FROM daftar_poli INNER JOIN jadwal_periksa ON 
-                                                daftar_poli.id_jadwal = jadwal_periksa.id WHERE jadwal_periksa.id_dokter = '$id_dokter' 
-                                                AND daftar_poli.status_periksa = '0'";
-                                                $queryCekJadwal = mysqli_query($mysqli,$cekJadwalPeriksa);
-                                                if (mysqli_num_rows($queryCekJadwal) > 0) {
-                                                
+                                                if($data['status']=='0'){
+                                                    echo 'Nonaktif';
+                                                } else if($data['status']=='1'){
+                                                    echo 'Aktif';
+                                                }
                                             ?>
-                                            <button type='button' class='btn btn-sm btn-warning edit-btn'
-                                                data-toggle="modal" data-target="#editModal<?php echo $data['id'] ?>"
-                                                disabled>Edit</button>
-                                            <button type='button' class='btn btn-sm btn-danger edit-btn' data-toggle="modal"
-                                                data-target="#hapusModal<?php echo $data['id'] ?>" disabled>Hapus</button>
-                                            <?php } else { ?>
-                                            <button type='button' class='btn btn-sm btn-warning edit-btn'
-                                                data-toggle="modal" data-target="#editModal<?php echo $data['id'] ?>"
-                                                <?php echo $data['id_dokter'] == $id_dokter ? '' : 'disabled'?>>Edit</button>
-                                            <button type='button' class='btn btn-sm btn-danger edit-btn' data-toggle="modal"
-                                                data-target="#hapusModal<?php echo $data['id'] ?>"
-                                                <?php echo $data['id_dokter'] == $id_dokter ? '' : 'disabled'?>>Hapus</button>
+                                        </td>
+                                        <td>
+                                            <?php
+                                                if($data['status']=='0'){
+                                            ?>
+                                                <a href="pages/jadwalPeriksa/ubahStatus.php?id=<?php echo $data['id'] ?>&status=<?php echo $data['status'] ?>" class="btn btn-primary">Aktif</a>
+                                            <?php }else if($data['status']=='1'){ ?>
+                                                <a href="pages/jadwalPeriksa/ubahStatus.php?id=<?php echo $data['id'] ?>&status=<?php echo $data['status'] ?>" class="btn btn-secondary">Nonaktif</a>
                                             <?php } ?>
                                         </td>
                                         <!-- Modal Edit Data Obat -->

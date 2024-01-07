@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
     else{
         // Query tambah data jadwal
-        $query = "INSERT INTO jadwal_periksa (id_dokter, hari, jam_mulai, jam_selesai) VALUES ('$idDokter', '$hari', '$jamMulai', '$jamSelesai')";
+        $query = "INSERT INTO jadwal_periksa (id_dokter, hari, jam_mulai, jam_selesai, status) VALUES ('$idDokter', '$hari', '$jamMulai', '$jamSelesai', '1')";
 
         if (mysqli_query($mysqli, $query)) {
             echo '<script>';

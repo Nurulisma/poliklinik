@@ -57,7 +57,7 @@
                                         <button type='button' class='btn btn-sm btn-warning edit-btn'
                                             data-toggle="modal"
                                             data-target="#editModal<?php echo $data['id'] ?>">Edit</button>
-                                        <a href='#?id=<?php echo $data['id'] ?>'
+                                        <a href='invoice.php?id=<?php echo $data['id'] ?>'
                                             class='btn btn-sm btn-secondary edit-btn mx-1'>Invoice</a>
                                         <div class="modal fade" id="editModal<?php echo $data['id'] ?>" tabindex="-1"
                                             role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
