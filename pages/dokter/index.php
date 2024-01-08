@@ -134,7 +134,7 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <!-- Form edit data dokter disini -->
-                                                    <form action="pages/dokter/updateDokter.php" method="post">
+                                                    <form action="pages/dokter/editDokter.php" method="post">
                                                         <input type="hidden" class="form-control" id="id" name="id"
                                                             value="<?php echo $data['id'] ?>" required>
                                                         <div class="form-group">

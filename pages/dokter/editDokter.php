@@ -4,8 +4,8 @@ include("../../config/koneksi.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Mengambil nilai dari form
     $id = $_POST["id"];
-    $nama = $_POST["nama_dokter"];
-    $password = $_POST["nama_dokter"];
+    $nama = $_POST["nama"];
+    $password = $_POST["nama"];
     $alamat = $_POST["alamat"];
     $no_hp = $_POST["no_hp"];
     $nama_poli = $_POST["poli"];
