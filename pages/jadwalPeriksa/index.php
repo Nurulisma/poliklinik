@@ -106,104 +106,160 @@
                                 while ($data = mysqli_fetch_assoc($result)) {
                                     # code...  
                                 ?>
-                                    <tr>
-                                        <td><?php echo $no++; ?></td>
-                                        <td><?php echo $data['nama'] ?></td>
-                                        <td><?php echo $data['hari'] ?></td>
-                                        <td><?php echo $data['jam_mulai'] ?></td>
-                                        <td><?php echo $data['jam_selesai'] ?></td>
-                                        <td>
-                                            <?php
-                                                if($data['status']=='0'){
+                                <tr>
+                                    <td><?php echo $no++; ?></td>
+                                    <td><?php echo $data['nama'] ?></td>
+                                    <td><?php echo $data['hari'] ?></td>
+                                    <td><?php echo $data['jam_mulai'] ?></td>
+                                    <td><?php echo $data['jam_selesai'] ?></td>
+                                    <td>
+                                        <?php
+                                                if($data['status']=='T'){
                                                     echo 'Nonaktif';
-                                                } else if($data['status']=='1'){
+                                                } else if($data['status']=='Y'){
                                                     echo 'Aktif';
                                                 }
                                             ?>
-                                        </td>
-                                        <td>
-                                            <?php
-                                                if($data['status']=='0'){
-                                            ?>
-                                                <a href="pages/jadwalPeriksa/ubahStatus.php?id=<?php echo $data['id'] ?>&status=<?php echo $data['status'] ?>" class="btn btn-primary">Aktif</a>
-                                            <?php }else if($data['status']=='1'){ ?>
-                                                <a href="pages/jadwalPeriksa/ubahStatus.php?id=<?php echo $data['id'] ?>&status=<?php echo $data['status'] ?>" class="btn btn-secondary">Nonaktif</a>
-                                            <?php } ?>
-                                        </td>
-                                        <!-- Modal Edit Data Obat -->
-                                        <div class="modal fade" id="editModal<?php echo $data['id'] ?>" tabindex="-1"
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-info btn-sm"
+                                            data-target="#editJadwal<?php echo $data['id'] ?>"
+                                            data-toggle="modal">Edit</button>
+                                        <!-- Modal Edit Data Jadwal Periksa -->
+                                        <div class="modal fade" id="editJadwal<?php echo $data['id'] ?>" tabindex="-1"
                                             role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h5 class="modal-title" id="addModalLabel">Edit Data Jadwal</h5>
+                                                        <h5 class="modal-title" id="addModalLabel">Edit Jadwal Periksa
+                                                        </h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <!-- Form edit data obat disini -->
-                                                        <form action="pages/jadwalPeriksa/updateJadwal.php" method="post">
-                                                            <input type="hidden" class="form-control" id="id" name="id"
-                                                                value="<?php echo $data['id'] ?>" required>
+                                                        <!-- Form tambah data jadwal disini -->
+                                                        <form action="pages/jadwalPeriksa/ubahStatus.php" method="post">
+                                                            <input type="hidden" name="id"
+                                                                value="<?php echo $data['id'] ?>">
+                                                            <input type="hidden" name="status"
+                                                                value="<?php echo $data['status'] ?>">
                                                             <div class="form-group">
                                                                 <label for="hari">Hari</label>
-                                                                <select class="form-control" id="hari" name="hari">
-                                                                    <?php
-                                                                $hariArray = ['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
-                                                            foreach($hariArray as $hari){
-                                                            ?>
-                                                                    <option value="<?php echo $hari ?>">
-                                                                        <?php echo $hari ?></option>
-                                                                    <?php } ?>
-                                                                </select>
+                                                                <input type="text" class="form-control" id="hari"
+                                                                    value="<?php echo $data['hari'] ?>" name="hari"
+                                                                    required readonly>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="jamMulai">Jam Mulai</label>
                                                                 <input type="time" class="form-control" id="jamMulai"
-                                                                    name="jamMulai" required
-                                                                    value="<?= $data['jam_mulai'] ?>">
+                                                                    value="<?php echo $data['jam_mulai'] ?>"
+                                                                    name="jamMulai" required readonly>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="jamSelesai">Jam Selesai</label>
                                                                 <input type="time" class="form-control" id="jamSelesai"
-                                                                    name="jamSelesai" required
-                                                                    value="<?= $data['jam_selesai'] ?>">
+                                                                    value="<?php echo $data['jam_selesai'] ?>"
+                                                                    name="jamSelesai" required readonly>
                                                             </div>
-                                                            <button type="submit" class="btn btn-success">Simpan</button>
+                                                            <div class="form-group">
+                                                                <label for="jamSelesai">Status</label>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="status" value="T" id="aktif" checked>
+                                                                    <label class="form-check-label"
+                                                                        for="aktif">Aktif</label>
+                                                                </div>
+                                                                <div class="form-check">
+                                                                    <input class="form-check-input" type="radio"
+                                                                        name="status" value="Y" id="nonaktif">
+                                                                    <label class="form-check-label" for="nonaktif">Tidak
+                                                                        Aktif</label>
+                                                                </div>
+                                                            </div>
+                                                            <button type="submit"
+                                                                class="btn btn-success">Simpan</button>
                                                         </form>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- Modal Hapus Data Obat -->
-                                        <div class="modal fade" id="hapusModal<?php echo $data['id'] ?>" tabindex="-1"
-                                            role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="addModalLabel">Hapus Data Obat</h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
-                                                            aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <!-- Form edit data obat disini -->
-                                                        <form action="pages/obat/hapusObat.php" method="post">
-                                                            <input type="hidden" class="form-control" id="id" name="id"
-                                                                value="<?php echo $data['id'] ?>" required>
-                                                            <p>Apakah anda yakin akan menghapus data <span
-                                                                    class="font-weight-bold"><?php echo $data['nama_obat'] ?></span>
-                                                            </p>
-                                                            <button type="submit" class="btn btn-danger">Hapus</button>
-                                                        </form>
-                                                    </div>
+                                    </td>
+                                    <!-- Modal Edit Data Obat -->
+                                    <div class="modal fade" id="editModal<?php echo $data['id'] ?>" tabindex="-1"
+                                        role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="addModalLabel">Edit Data Jadwal</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Form edit data obat disini -->
+                                                    <form action="pages/jadwalPeriksa/updateJadwal.php" method="post">
+                                                        <input type="hidden" class="form-control" id="id" name="id"
+                                                            value="<?php echo $data['id'] ?>" required>
+                                                        <div class="form-group">
+                                                            <label for="hari">Hari</label>
+                                                            <select class="form-control" id="hari" name="hari">
+                                                                <?php
+                                                                $hariArray = ['Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+                                                            foreach($hariArray as $hari){
+                                                            ?>
+                                                                <option value="<?php echo $hari ?>">
+                                                                    <?php echo $hari ?></option>
+                                                                <?php } ?>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="jamMulai">Jam Mulai</label>
+                                                            <input type="time" class="form-control" id="jamMulai"
+                                                                name="jamMulai" required
+                                                                value="<?= $data['jam_mulai'] ?>">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="jamSelesai">Jam Selesai</label>
+                                                            <input type="time" class="form-control" id="jamSelesai"
+                                                                name="jamSelesai" required
+                                                                value="<?= $data['jam_selesai'] ?>">
+                                                        </div>
+                                                        <button type="submit" class="btn btn-success">Simpan</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
-                                    </tr>
+                                    </div>
+                                    <!-- Modal Hapus Data Obat -->
+                                    <div class="modal fade" id="hapusModal<?php echo $data['id'] ?>" tabindex="-1"
+                                        role="dialog" aria-labelledby="addModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="addModalLabel">Hapus Data Obat</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <!-- Form edit data obat disini -->
+                                                    <form action="pages/obat/hapusObat.php" method="post">
+                                                        <input type="hidden" class="form-control" id="id" name="id"
+                                                            value="<?php echo $data['id'] ?>" required>
+                                                        <p>Apakah anda yakin akan menghapus data <span
+                                                                class="font-weight-bold"><?php echo $data['nama_obat'] ?></span>
+                                                        </p>
+                                                        <button type="submit" class="btn btn-danger">Hapus</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tr>
                                 <?php } ?>
 
                             </tbody>
